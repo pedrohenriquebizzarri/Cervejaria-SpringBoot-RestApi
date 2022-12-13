@@ -50,6 +50,7 @@ public class CervejaBOImpl implements CervejaBO{
 				cervejaJson.getEbc());
 		
 		cervejaDAO.inserir(cerveja);
+		
 		return cerveja;
 	}
 
