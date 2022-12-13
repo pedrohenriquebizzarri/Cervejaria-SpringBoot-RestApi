@@ -1,9 +1,7 @@
-br\com\cervejariabaphomet\bo\impl\LivroBOImpl.class
 br\com\cervejariabaphomet\dao\impl\LivroDAOImpl.class
 br\com\cervejariabaphomet\entity\Livro.class
 br\com\cervejariabaphomet\exception\EstiloNaoEncontradoException.class
 br\com\cervejariabaphomet\config\SpringSecurityConfig.class
-br\com\cervejariabaphomet\bo\LivroBO.class
 br\com\cervejariabaphomet\controller\LoteController.class
 br\com\cervejariabaphomet\dao\CervejaDAO.class
 br\com\cervejariabaphomet\bo\impl\CervejaBOImpl.class
@@ -13,7 +11,6 @@ br\com\cervejariabaphomet\bo\LoteBO.class
 br\com\cervejariabaphomet\exception\LivroNotFoundException.class
 br\com\cervejariabaphomet\dao\impl\EstiloDAOImpl.class
 br\com\cervejariabaphomet\exception\CervejaNaoEncontradoException.class
-br\com\cervejariabaphomet\StartBookApplication.class
 br\com\cervejariabaphomet\dao\GenericDAO.class
 br\com\cervejariabaphomet\entity\json\LoteJson.class
 br\com\cervejariabaphomet\dao\impl\LoteDAOImpl.class
@@ -27,7 +24,6 @@ br\com\cervejariabaphomet\dao\LoteDAO.class
 br\com\cervejariabaphomet\bo\CervejaBO.class
 br\com\cervejariabaphomet\entity\Cerveja.class
 br\com\cervejariabaphomet\controller\EstiloController.class
-br\com\cervejariabaphomet\controller\LivroController.class
 br\com\cervejariabaphomet\controller\CervejaController.class
 br\com\cervejariabaphomet\dao\EstiloDAO.class
 br\com\cervejariabaphomet\exception\LivroUnSupportedFieldPatchException.class
