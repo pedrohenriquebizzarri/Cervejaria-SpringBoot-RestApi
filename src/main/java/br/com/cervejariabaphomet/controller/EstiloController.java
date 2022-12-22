@@ -15,32 +15,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cervejariabaphomet.bo.EstiloBO;
 import br.com.cervejariabaphomet.entity.Estilo;
 import br.com.cervejariabaphomet.exception.KeyNotFoundException;
+import br.com.cervejariabaphomet.service.EstiloService;
 
 @RestController
 @RequestMapping("estilo")
 public class EstiloController {
 
 	@Autowired
-	private EstiloBO estiloBO;
+	private EstiloService estiloService;
 	
 	@GetMapping("listar")
 	public ResponseEntity<List<Estilo>> listar() {
-		return new ResponseEntity<List<Estilo>>(estiloBO.listar(), HttpStatus.OK);
+		return new ResponseEntity<List<Estilo>>(estiloService.listar(), HttpStatus.OK);
 	}
 
 	@GetMapping("pesquisar/{id}")
 	public ResponseEntity<Estilo> pesquisar(@PathVariable int id){
-		return new ResponseEntity<Estilo>(estiloBO.pesquisar(id), HttpStatus.OK);
+		return new ResponseEntity<Estilo>(estiloService.pesquisar(id), HttpStatus.OK);
 	}
 	
 	@Transactional
 	@PostMapping("inserir")
 	public ResponseEntity<Estilo> cadastrar(@RequestBody Estilo estilo) {
 		try {
-			estiloBO.inserir(estilo);
+			estiloService.inserir(estilo);
 			return new ResponseEntity<Estilo>(estilo, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<Estilo>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -52,7 +52,7 @@ public class EstiloController {
 	public ResponseEntity<Estilo> atualizar(@RequestBody Estilo estilo, @PathVariable int id){
 		try {
 			estilo.setId(id);
-			estiloBO.atualizar(estilo, id);
+			estiloService.atualizar(estilo, id);
 			return new ResponseEntity<Estilo>(estilo, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Estilo>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -63,7 +63,7 @@ public class EstiloController {
 	@DeleteMapping("deletar/{id}")
 	public ResponseEntity<Estilo> deletar(@PathVariable int id){
 		try {
-			estiloBO.remover(id);
+			estiloService.remover(id);
 			return new ResponseEntity<Estilo>(HttpStatus.OK);
 		} catch (KeyNotFoundException e) {
 			return new ResponseEntity<Estilo>(HttpStatus.BAD_REQUEST);

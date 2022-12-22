@@ -1,6 +1,6 @@
 package br.com.cervejariabaphomet.entity;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,14 +36,29 @@ public class Lote {
 	@Column(name = "quantidade", nullable = false)
 	private int quantidade;
 
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data_fabricacao", nullable = false)
-	private Date dataFabricacao;
+	private Calendar dataFabricacao;
+	
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data_vencimento")
-	private Date dataVencimento;
+	private Calendar dataVencimento;
 	
+	public Lote() {
+
+	}
+
+	public Lote(String descricao, Cerveja cerveja, int quantidade, Calendar dataFabricacao, Calendar dataVencimento) {
+		super();
+		this.descricao = descricao;
+		this.cerveja = cerveja;
+		this.quantidade = quantidade;
+		this.dataFabricacao = dataFabricacao;
+		this.dataVencimento = dataVencimento;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -76,19 +91,20 @@ public class Lote {
 		this.quantidade = quantidade;
 	}
 
-	public Date getDataFabricacao() {
+	public Calendar getDataFabricacao() {
 		return dataFabricacao;
 	}
 
-	public void setDataFabricacao(Date dataFabricacao) {
+	public void setDataFabricacao(Calendar dataFabricacao) {
 		this.dataFabricacao = dataFabricacao;
 	}
 
-	public Date getDataVencimento() {
+	
+	public Calendar getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(Date dataVencimento) {
+	public void setDataVencimento(Calendar dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 

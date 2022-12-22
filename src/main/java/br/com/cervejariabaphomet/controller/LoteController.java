@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cervejariabaphomet.bo.LoteBO;
 import br.com.cervejariabaphomet.entity.Lote;
-import br.com.cervejariabaphomet.entity.json.LoteJson;
 import br.com.cervejariabaphomet.exception.KeyNotFoundException;
+import br.com.cervejariabaphomet.resource.LoteResource;
+import br.com.cervejariabaphomet.service.LoteService;
 
 
 @RestController
@@ -26,23 +26,23 @@ import br.com.cervejariabaphomet.exception.KeyNotFoundException;
 public class LoteController {
 
 	@Autowired
-	private LoteBO loteBO;
+	private LoteService loteService;
 	
 	@GetMapping("listar")
 	public ResponseEntity<List<Lote>> listar() {
-		return new ResponseEntity<List<Lote>>(loteBO.listar(), HttpStatus.OK);
+		return new ResponseEntity<List<Lote>>(loteService.listar(), HttpStatus.OK);
 	}
 
 	@GetMapping("pesquisar/{id}")
 	public ResponseEntity<Lote> pesquisar(@PathVariable int id){
-		return new ResponseEntity<Lote>(loteBO.pesquisar(id), HttpStatus.OK);
+		return new ResponseEntity<Lote>(loteService.pesquisar(id), HttpStatus.OK);
 	}
 	
 	@Transactional
 	@PostMapping("inserir")
-	public ResponseEntity<Lote> cadastrar(@RequestBody LoteJson loteJson) {
+	public ResponseEntity<Lote> cadastrar(@RequestBody LoteResource loteResource) {
 		try {
-			return new ResponseEntity<Lote>(loteBO.inserir(loteJson), HttpStatus.CREATED);
+			return new ResponseEntity<Lote>(loteService.inserir(loteResource), HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<Lote>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -50,9 +50,9 @@ public class LoteController {
 	
 	@Transactional
 	@PutMapping("atualizar/{id}")
-	public ResponseEntity<Lote> atualizar(@RequestBody LoteJson loteJson, @PathVariable int id){
+	public ResponseEntity<Lote> atualizar(@RequestBody LoteResource loteResource, @PathVariable int id){
 		try {
-			return new ResponseEntity<Lote>(loteBO.atualizar(loteJson, id), HttpStatus.OK);
+			return new ResponseEntity<Lote>(loteService.atualizar(loteResource, id), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Lote>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -62,7 +62,7 @@ public class LoteController {
 	@DeleteMapping("deletar/{id}")
 	public ResponseEntity<Lote> deletar(@PathVariable int id){
 		try {
-			loteBO.remover(id);
+			loteService.remover(id);
 			return new ResponseEntity<Lote>(HttpStatus.OK);
 		} catch (KeyNotFoundException e) {
 			return new ResponseEntity<Lote>(HttpStatus.BAD_REQUEST);

@@ -31,6 +31,15 @@ public class Estilo {
 	@JsonBackReference
 	private List<Cerveja> cervejas;
 
+	public Estilo() {
+		
+	}
+
+	public Estilo(String nome) {
+		super();
+		this.nome = nome;
+	}
+
 	public int getId() {
 		return id;
 	}
