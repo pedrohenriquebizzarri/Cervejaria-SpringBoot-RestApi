@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Built-By: T-Gamer
 Build-Jdk: 17.0.3
-Main-Class: br.com.cervejariabaphomet
+Main-Class: br.com.cervejariabaphomet.CervejariaBaphometApplication
 Created-By: Maven Integration for Eclipse
 
